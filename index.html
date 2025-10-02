@@ -216,9 +216,195 @@
       </details>
       <button :class="{ loading }" :disabled="loading || isValidated()" @click="submit($refs, $nextTick)">生成</button>
     </main>
-    <footer>
-     service
-    </footer>
+   <footer class="container text-muted small navbar-fixed-bottom" style="text-align: center;background-color:rgba(255,255,255,0.7);z-index: 0;">
+  <hr>
+  <script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?c790ac2bdc2f385757ecd0183206108d";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s)})();</script>  <p>
+    <!-- 页脚信息 -->
+     	<div class="text-center">
+<div>    <!--下面是运行时间统计代码-->
+    <script>
+        function secondToDate(second) {
+            if (!second) {
+                    return 0;
+                    }
+            var time = new Array(0, 0, 0, 0, 0);
+            if (second >= 365 * 24 * 3600) {
+                time[0] = parseInt(second / (365 * 24 * 3600));
+                second %= 365 * 24 * 3600;
+                }
+            if (second >= 24 * 3600) {
+                time[1] = parseInt(second / (24 * 3600));
+                second %= 24 * 3600;
+                }
+            if (second >= 3600) {
+                time[2] = parseInt(second / 3600);
+                second %= 3600;
+                }
+            if (second >= 60) {
+                time[3] = parseInt(second / 60);
+                second %= 60;
+                }
+            if (second > 0) {
+                time[4] = second;
+                }
+            return time;
+        }
+    </script>
+    <script type="text/javascript" language="javascript">
+        function setTime() {
+            //下面是建站时间，月份需要-1
+            var create_time = Math.round(new Date(Date.UTC(2022, 10, 18, 18, 0, 0)).getTime() / 1000);
+            var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+            currentTime = secondToDate((timestamp - create_time));
+            currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
+                    + currentTime[2] + '时' + currentTime[3] + '分'
+                    + currentTime[4] + '秒';
+            document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+        }
+        setInterval(setTime, 1000);
+    </script>
+    <span>在风雨中度过<span id="htmer_time"></span></span>
+<!--运行时间代码结束位置--> | <a href="https://s.fnthink.com" target="_blank"><strong>幻念短网站</strong></a><br/> 
+							 <a href="https://www.fnthink.com" target="_blank"><strong>幻念团队 | fnthink </strong></a>© 2018-2025 All rights reserved.<br/>
+
+    <!-- 二维码按钮 -->
+    <a data-toggle="modal" href="#qr"><i class="icon icon-qrcode hidden-xs inline-block" data-toggle="tooltip" title="二维码"></i></a>
+          <a id="dark" data-toggle="tooltip" title="暗黑模式"><i class="icon icon-lightbulb" id="dark_ico"></i></a>
+              <a href="https://img.fnthink.com/admin/index.php?login=logout" data-toggle="tooltip" title="退出账号"><i class="icon icon-signout"></i></a>
+      </p>
+</footer>
+<script type="application/javascript" src="https://img.fnthink.com/public/static/qrcode/qrcode.min.js"></script>
+<script type="application/javascript" src="https://img.fnthink.com/public/static/nprogress/nprogress.min.js"></script>
+<script>
+  // NProgress
+  NProgress.configure({
+    barColor: '#000000'
+  });
+  NProgress.start();
+  NProgress.done();
+
+  // 导航状态
+  $('.nav-pills').find('a').each(function() {
+    // console.log(document.location);
+    if (this.pathname === location.pathname) {
+      $(this).parent().addClass('active');
+    }
+  });
+
+  // js 获取当前网址二维码
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+    text: window.location.href,
+    width: 265,
+    height: 256,
+    colorDark: "#353535",
+    colorLight: "#F1F1F1",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  // 二维码对话框属性
+  $('#qr').modal({
+    moveable: true,
+    moveable: "inside",
+    backdrop: true,
+    show: false,
+  })
+
+      if (document.cookie.indexOf("noticed=") == -1) {
+      $('#notice').modal({
+        backdrop: false,
+        loadingIcon: "icon-spin",
+        scrollInside: true,
+        moveable: "inside",
+        rememberPos: true,
+        scrollInside: true
+      }).on('hidden.zui.modal', function() {
+        // 只有用户手动关闭才会存储cookie,避免不看公告直接刷新
+        document.cookie = "noticed = 1";
+        console.log('网站公告已显示完毕')
+      })
+    }
+  
+  
+      // cookie 操作封装 https://www.jb51.net/article/94456.htm   
+    var cookieUtil = {
+      // 设置cookie
+      setItem: function(name, value, days) {
+        var date = new Date();
+        date.setDate(date.getDate() + days);
+        document.cookie = name + '=' + value + ';expires=' + date + ';path=' + '/';
+      },
+      // 获取cookie
+      getItem: function(name) {
+        var arr = document.cookie.replace(/\s/g, "").split(';');
+        for (var i = 0; i < arr.length; i++) {
+          var tempArr = arr[i].split('=');
+          if (tempArr[0] == name) {
+            return decodeURIComponent(tempArr[1]);
+          }
+        }
+        return '';
+      },
+      // 删除cookie
+      removeItem: function(name) {
+        this.setItem(name, '1', -1);
+      },
+      // 检查是否含有某cookie
+      hasItem: function(name) {
+        return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(name).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+      },
+      // 获取全部的cookie列表
+      getAllItems: function() {
+        var cookieArr = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
+        for (var nIdx = 0; nIdx < cookieArr.length; nIdx++) {
+          cookieArr[nIdx] = decodeURIComponent(cookieArr[nIdx]);
+        }
+        return cookieArr;
+      }
+    };
+
+    // 暗黑操作
+    let styleLabel = document.createElement('style');
+    document.getElementById('dark').onclick = function() {
+      if (cookieUtil.getItem('dark-mode') == null) {
+        const style = 'html{filter: invert(80%) hue-rotate(180deg);} img,video {filter: invert(100%) hue-rotate(180deg);}';
+        styleLabel.appendChild(document.createTextNode(style));
+        document.head.appendChild(styleLabel);
+        cookieUtil.setItem('dark-mode', 1, 1);
+      } else {
+        if (cookieUtil.getItem('dark-mode') == 1) {
+          document.head.removeChild(styleLabel);
+          cookieUtil.setItem('dark-mode', 0, 1);
+        } else {
+          const style = 'html{filter: invert(80%) hue-rotate(180deg);} img,video {filter: invert(100%) hue-rotate(180deg);}';
+          styleLabel.appendChild(document.createTextNode(style));
+          document.head.appendChild(styleLabel);
+          cookieUtil.setItem('dark-mode', 1, 1);
+        }
+      }
+    }
+
+    if (cookieUtil.getItem('dark-mode') == 1) {
+      const style = 'html{filter: invert(80%) hue-rotate(180deg);} img,video {filter: invert(100%) hue-rotate(180deg);}';
+      styleLabel.appendChild(document.createTextNode(style));
+      document.head.appendChild(styleLabel);
+    }
+    if (cookieUtil.getItem('dark-mode') == null) {
+      document.head.removeChild(styleLabel);
+    }
+  
+  // tips提示
+  $('[data-toggle="tooltip"]').tooltip({
+    tipClass: 'tooltip',
+    placement: 'auto',
+    html: true,
+    delay: {
+      show: 50,
+      hide: 0.5
+    }
+  });
+
+
+</script>
     <script src="asset/js/alpine.js"></script>
     <script>
       const app = {
